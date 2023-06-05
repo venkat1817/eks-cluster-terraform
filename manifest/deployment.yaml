@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  deployment-app
+  namespace: docker-image
+  labels:
+    app:  docker-app
+spec:
+  selector:
+    matchLabels:
+      app: docker-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  docker-app
+    spec:
+      containers:
+      - name:  docker-app
+        image: 157252177705.dkr.ecr.us-west-2.amazonaws.com/docker:123
+        ports:
+        - containerPort:  80
+          name:  docker-app
